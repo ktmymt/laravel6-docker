@@ -17,7 +17,7 @@ class TodoEQRepository implements TodoRepositoryInterface
         return Todo::whereId($id)->first();
     }
 
-    public function storeTodo(string $title)
+    public function storeTodo(string $title, string $description)
     {
     }
 }

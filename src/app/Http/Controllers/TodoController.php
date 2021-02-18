@@ -2,36 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests\Todo\TodoStoreRequest;
 use App\Repositories\Todo\TodoRepositoryInterface as TodoRepository;
+use App\Services\TodoService;
 
 class TodoController extends Controller
 {
-    public function __construct(private TodoRepository $todo)
+    public function __construct(private TodoRepository $todoRepository, private TodoService $todoSearvice)
     {
     }
 
     public function index()
     {
-        $todos = $this->todo->getAllTodos();
-        return view('pages.todo.top', compact('todos'));
+        $todos = $this->todoRepository->getAllTodos();
+        return view('pages.todo.index', compact('todos'));
     }
 
     public function store(TodoStoreRequest $request)
     {
         $input = $request->except('_token');
-        $res = $this->todo->storeTodo($input['todo']);
+        $res = $this->todoRepository->storeTodo($input['title'], $input['description']);
 
         if ($res) {
-            return redirect('/', 301);
+            return redirect('/');
         }
     }
 
-    public function show()
+    public function show(int $id)
     {
-        $todo = $this->todo->getTodoById(1);
+        $todo = $this->todoRepository->getTodoById($id);
         return view('pages.todo.show', compact('todo'));
     }
 }

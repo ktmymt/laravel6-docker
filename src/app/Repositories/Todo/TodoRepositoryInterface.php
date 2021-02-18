@@ -8,5 +8,5 @@ interface TodoRepositoryInterface
 
     public function getTodoById(int $id);
 
-    public function storeTodo(string $title);
+    public function storeTodo(string $title, string $description);
 }

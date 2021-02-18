@@ -21,12 +21,13 @@ class TodoQBRepository implements TodoRepositoryInterface
         return $this->todo->whereId($id)->first();
     }
 
-    public function storeTodo(string $title)
+    public function storeTodo(string $title, string $description)
     {
         try {
             $now = \Carbon\Carbon::now();
             $this->todo->insert([
                 'title' => $title,
+                'description' => $description,
                 'status' => false,
                 'created_at' => $now,
                 'updated_at' => $now,
