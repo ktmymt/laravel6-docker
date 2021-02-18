@@ -2,6 +2,6 @@
 
 @section('content')
     <div>
-        test todo
+        <p>{{ $todo->id }} {{ $todo->title }} </p>
     </div>
 @endsection
