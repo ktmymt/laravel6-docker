@@ -10,7 +10,8 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             \App\Repositories\Todo\TodoRepositoryInterface::class,
-            \App\Repositories\Todo\TodoRepository::class
+            // \App\Repositories\Todo\TodoEQRepository::class,
+            \App\Repositories\Todo\TodoQBRepository::class
         );
     }
 
